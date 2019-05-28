@@ -2,7 +2,7 @@
 Homework 5.
 Домашняя работа на вт, срд.
 
-1 Создать ветку от существующего проекта gitHub: https://github.com/AndesTechConsulting5/JavaSE-Day16-Homework5.git
+1. Создать ветку от существующего проекта gitHub: https://github.com/AndesTechConsulting5/JavaSE-Day16-Homework5.git
 Имя ветки должно содержать строку rfb, например VasilyPetrov-rfb-branch-home5.
 
 Открыть сайт http://yandex.ru
