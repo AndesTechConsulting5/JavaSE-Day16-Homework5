@@ -13,7 +13,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
@@ -26,7 +29,7 @@ public class HomeWork5Test
     @BeforeClass
     public void initData(){
     System.setProperty("webdriver.chrome.driver",
-            "E:\\selenium_drivers\\chromedriver.exe");
+            "C:\\Users\\presentation\\IdeaProjects\\ChromeDriver\\chromedriver_74.0.3729.6.exe");
 
     System.out.println("+++ Class: " + this);
     chromeOptions = new ChromeOptions();
@@ -51,6 +54,22 @@ public class HomeWork5Test
          *  Тут нужен Ваш код!
          *
          */
+
+        WebElement searchField = wait2.until( x -> x.findElement(By.cssSelector("#text")));
+        WebElement searchButton = wait2.until( x -> x.findElement(By.cssSelector(".suggest2-form__button")));
+
+        searchField.sendKeys("Auto tests");
+        searchButton.submit();
+
+        List<WebElement> searchResalts = wd.findElements(By.cssSelector("div.path.path_show-https.organic__path > a"));
+
+        int i = 0;
+        for(WebElement element :  searchResalts)
+        {
+            System.out.println(i++ + " : " + element.getAttribute("href"));
+        }
+
+
     }
 
 
