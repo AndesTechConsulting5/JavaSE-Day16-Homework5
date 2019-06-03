@@ -46,11 +46,53 @@ public class HomeWork5Test
         Wait<WebDriver> wait2 = new FluentWait<>(wd).withTimeout(Duration.ofSeconds(5)).
                 pollingEvery(Duration.ofMillis(500)).ignoring(NoSuchElementException.class);
         wd.get("http://yandex.ru");
+        WebElement webElement = wd.findElement(By.name("text"));
 
-        /**
-         *  Тут нужен Ваш код!
-         *
-         */
+        String searchPrase = "java tester";
+        String ratingAddress = "java";
+
+        webElement.sendKeys(searchPrase);
+        webElement.submit();
+
+        HashMap<Integer,String> rating =  new HashMap<>();
+
+        String resultDataSelector = "ul > li.serp-item h2>a";
+
+        int i = 0;
+        List<WebElement> datas = wd.findElements(By.cssSelector(resultDataSelector));
+        for(WebElement webElement1: datas)
+        {
+            String link =  webElement1.getAttribute("href");
+            System.out.println(i++ + " :" + link);
+            if(link.toLowerCase().indexOf(ratingAddress) != -1) rating.put(i,link);
+
+        }
+
+        int N = 6;
+
+        for(int k = 0; k<N; k++)
+        {
+
+            WebElement pnnext = wd.findElement(By.linkText("дальше"));
+            pnnext.click();
+
+            datas.clear();
+            datas = wd.findElements(By.cssSelector(resultDataSelector));
+            for(WebElement webElement1 :  datas)
+            {
+                String link =  webElement1.getAttribute("href");
+                System.out.println(i++ + " :" + link);
+                if(link.toLowerCase().indexOf(ratingAddress) != -1) rating.put(i,link);
+            }
+
+        }
+
+        System.out.println("---------------------rating-----------------------------------");
+        System.out.println("Search prase: " + searchPrase + ", rating for web with text:" + ratingAddress);
+        for(int key: rating.keySet())
+        {
+            System.out.println(key + " : " + rating.get(key));
+        }
     }
 
 
